@@ -27,6 +27,16 @@
     line-height: 1.5em;
     display: inline-block;
 }
+.e0:hover, 
+.e1:hover, 
+.e2:hover, 
+.e3:hover, 
+.e4:hover, 
+.e5:hover, 
+.e6:hover,
+.eX:hover {
+    opacity: 0.85;
+}
 #grid .e0, #grid .e1, #grid .e2, #grid .e3, #grid .e4, #grid .e5, #grid .e6, #grid .eX {
     font-size: 40px;
 }
@@ -246,6 +256,8 @@
     <p>Profile: <select id="profile-selector">
         <option value="1,3,1,3,1,3,1,3,1,3,0.3,0.3,0.1,0.1" selected="selected">5-color team, multiple target</option>
         <option value="1,1,1,1,1,1,1,1,1,1,0.3,0.3,0.1,0.1">5-color team, single target</option>
+        <option value="1,3,1,3,0.1,3,0.1,3,1,3,0.3,0.3,0.1,0.1">byakko team, multiple target</option>
+        <option value="1,1,1,1,0.1,1,0.1,1,1,1,0.3,0.3,0.1,0.1">byakko team, single target</option>
         <option value="0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,1,1,0.1,0.1">Recovery</option>
         <option value="0.1,0.3,0.1,0.3,0.1,0.3,0.1,0.3,0.1,0.3,1,1,0.1,0.1">Recovery, multiple target</option>
         <option value="1,3,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.3,0.3,0.1,0.1">Fire team, multiple target</option>
@@ -324,12 +336,6 @@
     <div id="change-control">
         <input type="button" value="Cancel" id="change-cancel"/>
         <input type="button" value="Change" id="change-change"/>
-    </div>
-</div>
-
-<div class="github-fork-ribbon-wrapper left-bottom">
-    <div class="github-fork-ribbon">
-        <a href="https://github.com/kennytm/pndopt">Fork me on GitHub</a>
     </div>
 </div>
 
@@ -1016,6 +1022,45 @@ $(document).ready(function() {
         clear_canvas();
         $('#change-popup').hide();
     });
+
+    $(window).keypress(function(e) {
+        $('#grid div:hover').each(function() {
+            var target_type = 'X';
+            switch (e.keyCode) {
+                case 49: //red
+                    target_type = 0;
+                    break;
+                case 50: //green
+                    target_type = 1;
+                    break;
+                case 51: //blue
+                    target_type = 2;
+                    break;
+                case 52: //light
+                case 113: //light
+                    target_type = 3;
+                    break;
+                case 53: //dark
+                case 119: //dark
+                    target_type = 4;
+                    break;
+                case 54: //heal
+                case 101: //heal
+                    target_type = 5;
+                    break;
+                case 55: //block
+                case 97: //block
+                    target_type = 6;
+                    break;
+                case 32: //reset
+                    target_type = 'X';
+                    break;
+            }
+            show_element_type($(this), target_type);
+            clear_canvas();
+        });
+
+    })
 });
 
 

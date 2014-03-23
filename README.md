@@ -13,6 +13,7 @@ Usage
 -----
 
 1. Left or right click on an orb to select its type.
+1a. Use keys 1,2,3,4,5,6,7 or 1,2,3,q,w,e,a
 2. Click "Solve" after completing the board.
 3. Choose one solution and see how it is performed.
 
